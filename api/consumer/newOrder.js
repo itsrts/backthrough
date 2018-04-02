@@ -1,9 +1,9 @@
 'use strict';
 
-let BaseRequest = require('../baseRequest');
-let Order       = require('../../models/order');
-let QueueManager= require('../../lib/qManager');
-let QueueConfig = require('../../qms/config');
+let BaseRequest     = require('../baseRequest');
+let Order           = require('../../models/order');
+let PendingQueue    = require('../../qms/pendingQueue');
+let QueueConfig     = require('../../qms/config');
 
 let schema  = { $id : "/NewOrder", type : "object", properties : {
     title           :   { type : "string"},
@@ -28,7 +28,7 @@ class NewOrder extends BaseRequest {
     constructor(server) {
         super(server, 'POST', '/consumer/neworder');
         this.setRequestBodySchema(schema);
-        this.pendingQueue   = new QueueManager(QueueConfig.QUEUES.pending);
+        this.pendingQueue   = new PendingQueue();
     }
 
     async doProcess(request, body, data) {

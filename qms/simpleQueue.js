@@ -15,7 +15,7 @@ class SimpleQueue {
         console.log(msg);
     }
 
-    sendJSON(json) {
+    sendJson(json) {
         this.queue.sendJson(json);
     }
 
