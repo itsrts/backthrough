@@ -1,6 +1,6 @@
 const Express   = require('express');
 
-class InsuranceResponse {
+class Response {
 
     constructor(res) {
         this.res    = res;
@@ -13,7 +13,7 @@ class InsuranceResponse {
     }
 }
 
-class InsuranceServer {
+class Server {
 
     constructor() {
         this.server   = new Express();
@@ -26,16 +26,20 @@ class InsuranceServer {
     }
 
     /**
+     * TODO  :  add the other implementations as in hapiServer.js
+     */
+
+    /**
      * Adds a new route to the server with the passed handler as the listener
      * @param {string} path 
      * @param {function} handler 
      */
     get(path, handler) {
         this.server.get(path, (req, res) => {
-            handler(req, new InsuranceResponse(res));
+            handler(req, new Response(res));
         });
     }
 
 }
 
-module.exports = InsuranceServer;
+module.exports = Server;

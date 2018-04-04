@@ -1,8 +1,8 @@
 'use strict';
-const InsuranceServer = require('./server/hapiServer');
-// const InsuranceServer = require('./server/expressServer');
+const Server = require('./server/hapiServer');
+// const Server = require('./server/expressServer');
 
-let server = new InsuranceServer();
+let server = new Server();
 
 
 let ins = require('./api')(server);

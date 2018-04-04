@@ -18,7 +18,7 @@ const goodOptions = {
     }
 };
 
-class InsuranceResponse {
+class Response {
 
     constructor(reply) {
         this.reply      = reply;
@@ -29,7 +29,7 @@ class InsuranceResponse {
     }
 }
 
-class InsuranceServer {
+class Server {
 
     constructor() {
         this.server   = new Hapi.Server();
@@ -70,7 +70,7 @@ class InsuranceServer {
     get(path, handler) {
         this.server.route({ method: 'GET', path: path,
             handler: (request, reply) => {
-                handler(request, new InsuranceResponse(reply));
+                handler(request, new Response(reply));
             }
         });
         return this;
@@ -84,7 +84,7 @@ class InsuranceServer {
     add(method, path, listener) {
         this.server.route({ method: method, path: path,
             handler: (request, reply) => {
-                listener(request, new InsuranceResponse(reply));
+                listener(request, new Response(reply));
             }
         });
         return this;
@@ -98,7 +98,7 @@ class InsuranceServer {
     post(path, handler) {
         this.server.route({ method: 'POST', path: path,
             handler: (request, reply) => {
-                handler(request, new InsuranceResponse(reply));
+                handler(request, new Response(reply));
             }
         });
         return this;
@@ -106,4 +106,4 @@ class InsuranceServer {
 
 }
 
-module.exports = InsuranceServer;
+module.exports = Server;
